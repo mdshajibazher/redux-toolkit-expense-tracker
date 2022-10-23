@@ -7,40 +7,16 @@
       "id": 1
     },
     {
-      "name": "a updated",
-      "type": "income",
-      "amount": 434334,
-      "id": 2
-    },
-    {
       "name": "fsdf",
       "type": "",
       "amount": 323,
       "id": 3
     },
     {
-      "name": "fdsfdas",
-      "type": "income",
-      "amount": 34,
-      "id": 4
-    },
-    {
       "name": "a",
       "type": "",
       "amount": 3,
       "id": 5
-    },
-    {
-      "name": "fsdaf",
-      "type": "income",
-      "amount": 43434,
-      "id": 6
-    },
-    {
-      "name": "a",
-      "type": "expense",
-      "amount": 23,
-      "id": 7
     }
   ]
 }
