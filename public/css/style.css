@@ -12,7 +12,9 @@
     flex-direction: column;
     min-height: 100vh;
 }
-
+.error{
+    color: red;
+}
 .header,
 .footer {
     padding: 20px;
@@ -163,7 +165,6 @@ label {
 }
 
 .cancel_edit {
-    display: none;
     margin-top: 10px;
     background-color: #e6425e !important;
 }

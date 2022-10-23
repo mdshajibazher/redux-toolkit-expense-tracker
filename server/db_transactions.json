@@ -1,52 +1,46 @@
 {
   "transactions": [
     {
-      "id": 1,
-      "name": "Salary from Google",
+      "name": "",
+      "type": "",
+      "amount": 0,
+      "id": 1
+    },
+    {
+      "name": "a updated",
       "type": "income",
-      "amount": 1000000
+      "amount": 434334,
+      "id": 2
     },
     {
-      "id": 2,
-      "name": "Family Expenses",
-      "type": "expense",
-      "amount": 200000
-    },
-    {
-      "name": "Buy Cigers",
-      "type": "expense",
-      "amount": "10",
+      "name": "fsdf",
+      "type": "",
+      "amount": 323,
       "id": 3
     },
     {
-      "name": "fdf",
+      "name": "fdsfdas",
       "type": "income",
-      "amount": "434",
+      "amount": 34,
       "id": 4
     },
     {
-      "name": "fdasf",
-      "type": "expense",
-      "amount": "4342343",
+      "name": "a",
+      "type": "",
+      "amount": 3,
       "id": 5
     },
     {
-      "name": "fgfg",
+      "name": "fsdaf",
       "type": "income",
-      "amount": 333,
+      "amount": 43434,
       "id": 6
     },
     {
-      "name": "affasg",
-      "type": "income",
-      "amount": 22,
+      "name": "a",
+      "type": "expense",
+      "amount": 23,
       "id": 7
-    },
-    {
-      "name": "affasg",
-      "type": "income",
-      "amount": 22,
-      "id": 8
     }
   ]
 }

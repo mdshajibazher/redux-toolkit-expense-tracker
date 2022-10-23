@@ -1,21 +1,30 @@
 import React from 'react';
 import deleteImage from "../../assets/images/delete.svg";
 import editImage from "../../assets/images/edit.svg";
+import {useDispatch} from "react-redux";
+import {editActive} from "../../features/transaction/transactionSlice";
 
-function SingleTransaction(props) {
+
+function SingleTransaction({transaction}) {
+
+    const dispatch = useDispatch();
+
+    const handleEdit =  () => {
+        dispatch(editActive(transaction));
+    }
     return (
 
-        <li className="transaction income">
-            <p>Earned this month</p>
+        <li className={`transaction ${transaction.type }`}>
+            <p>{transaction.name}</p>
             <div className="right">
-                <p>৳ 100</p>
+                <p>৳ {transaction.amount}</p>
                 <button className="link">
                     <img
                         className="icon"
                         src={deleteImage}
                     />
                 </button>
-                <button className="link">
+                <button onClick={handleEdit} className="link">
                     <img
                         className="icon"
                         src={editImage}

@@ -11,6 +11,7 @@ export const addTransaction = async  (data) => {
 }
 
 export const editTransaction = async  (id,data) => {
+    console.log('id,data',id,data)
     const response = await axiosInstance.put(`/transactions/${id}`,data);
     return response.data;
 }

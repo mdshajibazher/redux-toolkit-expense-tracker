@@ -1,18 +1,47 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {createTransaction} from "../features/transaction/transactionSlice";
+import {changeTransaction, createTransaction} from "../features/transaction/transactionSlice";
+
 
 function Form(props) {
 
     const [name, setName] = useState('');
     const [type, setType] = useState('');
     const [amount, setAmount] = useState('');
-
+    const [editMode,setEditMode] = useState(false);
     const dispatch = useDispatch();
-    const {isLoading, isError,error} = useSelector(state => state.transaction)
+    const {isLoading, isError,error} = useSelector(state => state.transaction);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    let {editing} = useSelector(state => state.transaction);
+
+    //listen for editMode active
+
+    useEffect(() => {
+        console.log('dfdfd',editing)
+            const {id,name,amount, type} = editing;
+            console.log('id',id);
+            console.log('editing',editing);
+            if(id){
+                setEditMode(true);
+                setName(name);
+                setType(type);
+                setAmount(amount);
+            }else{
+                setEditMode(false);
+                reset();
+            }
+    }, [editing]);
+
+
+
+    const reset = () => {
+        setName('');
+        setType('');
+        setAmount('');
+    }
+
     const handleCreate = (e) => {
         e.preventDefault();
-        console.log('name',name,'type',type,amount,'amount');
         dispatch(
             createTransaction({
             name,
@@ -20,11 +49,41 @@ function Form(props) {
             amount: Number(amount),
         })
         );
+
+        reset();
     }
+
+
+    const handleUpdate = (e,id) => {
+        e.preventDefault();
+        dispatch(
+            changeTransaction({
+                id,
+                data: {name, type, amount: Number(amount)}
+            })
+        );
+        reset();
+        setEditMode(false);
+    }
+
+
+    const cancelEditMode = () => {
+        setEditMode(false);
+        reset();
+    }
+
+
+
+
+
+
+
+
     return (
         <div className="form">
             <h3>Add new transaction</h3>
-            <form onSubmit={handleCreate}>
+            {/* eslint-disable-next-line no-restricted-globals */}
+            <form onSubmit={editMode ? () =>  handleUpdate(event,editing.id)  :  handleCreate}>
             <div className="form-group">
                 <label htmlFor="name">Name</label>
                 <input
@@ -32,6 +91,7 @@ function Form(props) {
                     type="text"
                     name="name"
                     placeholder="Enter expense name"
+                    value={name}
                     onChange={e => setName(e.target.value)}
                 />
             </div>
@@ -68,16 +128,17 @@ function Form(props) {
                     type="number"
                     placeholder="300"
                     name="amount"
+                    value={amount}
                     onChange={e => setAmount(e.target.value)}
                 />
             </div>
 
-            <button disabled={isLoading} type="submit" className="btn">Add Transaction</button>
+            <button disabled={isLoading} type="submit" className="btn">{editMode ? 'Edit' : 'Add'} Transaction</button>
 
                 {(!isLoading && isError) && <p className="error">{error}</p> }
             </form>
 
-            <button className="btn cancel_edit">Cancel Edit</button>
+            {editMode && <button onClick={cancelEditMode} className="btn cancel_edit">Cancel Edit</button> }
         </div>
     );
 }
